@@ -2,15 +2,13 @@ package br.com.automacao.steps;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
+import br.com.automacao.core.DriverFactory;
 import br.com.automacao.entity.Usuario;
 import br.com.automacao.factory.UsuarioFactory;
 import br.com.automacao.pages.CadastroContaPage;
@@ -25,7 +23,6 @@ import cucumber.api.java.pt.Quando;
 
 public class LoginSteps {
 
-	private WebDriver driver;
 	LoginPage loginPage;
 	PrincipalPage principalPage;
 	CadastroContaPage cadastroPage;
@@ -33,15 +30,14 @@ public class LoginSteps {
 
 	@Before
 	public void setUp() {
-		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		DriverFactory.getDriver();
+		principalPage = new PrincipalPage();
+		loginPage = new LoginPage();
+		cadastroPage = new CadastroContaPage();
 	}
 
 	@Dado("^que estou na tela de login$")
 	public void que_estou_na_tela_de_login() throws Throwable {
-		loginPage = new LoginPage(driver);
-		principalPage = new PrincipalPage(driver);
-		cadastroPage = new CadastroContaPage(driver);
 		principalPage.acessarTelaPrincipal();
 	}
 
@@ -99,7 +95,7 @@ public class LoginSteps {
 
 	@After(order = 2, value = { "@funcionais" })
 	public void screenshot(Scenario cenario) {
-		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		File file = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
 		try {
 			FileUtils.copyFile(file, new File("target/screenshots/" + cenario.getId() + ".jpg"));
 		} catch (IOException e) {
@@ -109,7 +105,7 @@ public class LoginSteps {
 
 	@After(order = 1, value = { "@funcionais" })
 	public void fechaBrowser() throws InterruptedException {
-		driver.quit();
+		DriverFactory.killDriver();
 		System.out.println("finalizando cenário de teste.");
 	}
 

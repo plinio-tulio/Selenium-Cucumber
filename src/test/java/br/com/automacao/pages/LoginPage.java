@@ -1,11 +1,11 @@
 package br.com.automacao.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
+import br.com.automacao.core.BasePage;
 import br.com.automacao.entity.Usuario;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
 	final private String campoUsuario = "email";
 	final private String campoSenha = "passwd";
@@ -14,32 +14,25 @@ public class LoginPage {
 	final private String mensagemAlerta = ".alert > p";
 	final private String detalhesMensagemAlerta = ".alert > ol > li";
 
-	WebDriver driver;
-
-	public LoginPage(WebDriver driver) {
-
-		this.driver = driver;
-	}
-
 	public void preencherCamposDatela(Usuario usuario) {
-		driver.findElement(By.id(campoUsuario)).sendKeys(usuario.getUsuario());
-		driver.findElement(By.id(campoSenha)).sendKeys(usuario.getSenha());
+		escrever(By.id(campoUsuario), usuario.getUsuario());
+		escrever(By.id(campoSenha), usuario.getSenha());
 	}
 
 	public void cliqueBotaoLogin() {
-		driver.findElement(By.id(botaoLogin)).click();
+		clique(By.id(botaoLogin));
 	}
 
 	public String obterTituloTela() {
-		return driver.findElement(By.cssSelector(tituloTela)).getText();
+		return obterTexto(By.cssSelector(tituloTela));
 	}
 
 	public String obterMensagemAlerta() {
-		return driver.findElement(By.cssSelector(mensagemAlerta)).getText();
+		return obterTexto(By.cssSelector(mensagemAlerta));
 	}
 
 	public String obterDetalhesMensagemAlerta() {
-		return driver.findElement(By.cssSelector(detalhesMensagemAlerta)).getText();
+		return obterTexto(By.cssSelector(detalhesMensagemAlerta));
 	}
 
 }

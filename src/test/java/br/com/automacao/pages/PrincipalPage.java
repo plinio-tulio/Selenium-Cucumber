@@ -1,35 +1,31 @@
 package br.com.automacao.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-public class PrincipalPage {
+import br.com.automacao.core.BasePage;
 
-	WebDriver driver;
-	final private String URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+public class PrincipalPage extends BasePage {
 
-	public PrincipalPage(WebDriver driver) {
-		this.driver = driver;
-	}
+	final private String BaseURL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
 
 	public void acessarTelaPrincipal() {
-		driver.get(URL);
+		acessar(BaseURL);
 	}
 
 	public void cliqueBotaoLogin() {
-		driver.findElement(By.cssSelector(".login")).click();
+		clique(By.cssSelector(".login"));
 	}
 
 	public void cliqueMenuSignout() {
-		driver.findElement(By.linkText("Sign out")).click();
+		clique(By.linkText("Sign out"));
 	}
 
 	public void cliqueCadastrarUsuario() {
-		driver.findElement(By.id("SubmitCreate")).click();
+		clique(By.id("SubmitCreate"));
 	}
 
 	public void prencherCampoEmailCadastro(String emailCriacao) {
-		driver.findElement(By.id("email_create")).sendKeys(emailCriacao);
+		escrever(By.id("email_create"), emailCriacao);
 	}
 
 }
