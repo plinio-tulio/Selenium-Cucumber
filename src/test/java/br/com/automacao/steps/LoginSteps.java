@@ -97,7 +97,7 @@ public class LoginSteps {
 		Assert.assertEquals(loginPage.obterMensagemAlerta(), "There is 1 error");
 	}
 
-	@After(order = 0, value = { "@funcionais" })
+	@After(order = 2, value = { "@funcionais" })
 	public void screenshot(Scenario cenario) {
 		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {
