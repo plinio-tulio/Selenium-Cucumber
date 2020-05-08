@@ -7,32 +7,25 @@ import br.com.automacao.entity.Usuario;
 
 public class LoginPage extends BasePage {
 
-	final private String campoUsuario = "email";
-	final private String campoSenha = "passwd";
-	final private String botaoLogin = "SubmitLogin";
-	final private String tituloTela = ".page-heading";
-	final private String mensagemAlerta = ".alert > p";
-	final private String detalhesMensagemAlerta = ".alert > ol > li";
-
 	public void preencherCamposDatela(Usuario usuario) {
-		escrever(By.id(campoUsuario), usuario.getUsuario());
-		escrever(By.id(campoSenha), usuario.getSenha());
+		escrever(By.id("email"), usuario.getUsuario());
+		escrever(By.id("passwd"), usuario.getSenha());
 	}
 
 	public void cliqueBotaoLogin() {
-		clique(By.id(botaoLogin));
+		clique(By.id("SubmitLogin"));
 	}
 
 	public String obterTituloTela() {
-		return obterTexto(By.cssSelector(tituloTela));
+		return obterTexto(By.cssSelector(".page-heading"));
 	}
 
 	public String obterMensagemAlerta() {
-		return obterTexto(By.cssSelector(mensagemAlerta));
+		return obterTexto(By.cssSelector(".alert > p"));
 	}
 
 	public String obterDetalhesMensagemAlerta() {
-		return obterTexto(By.cssSelector(detalhesMensagemAlerta));
+		return obterTexto(By.cssSelector(".alert > ol > li"));
 	}
 
 }
