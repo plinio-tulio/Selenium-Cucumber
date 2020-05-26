@@ -1,31 +1,35 @@
 package br.com.automacao.pages;
 
-import org.openqa.selenium.By;
+import br.com.automacao.maps.LoginElementMap;
 
-import br.com.automacao.core.BasePage;
 import br.com.automacao.entity.Usuario;
 
-public class LoginPage extends BasePage {
+public class LoginPage extends LoginElementMap {
 
 	public void preencherCamposDatela(Usuario usuario) {
-		escrever(By.id("email"), usuario.getUsuario());
-		escrever(By.id("passwd"), usuario.getSenha());
+
+		escrever(campoEmail, usuario.getUsuario());
+		escrever(campoSenha, usuario.getSenha());
 	}
 
 	public void cliqueBotaoLogin() {
-		clique(By.id("SubmitLogin"));
+
+		botaoLogin.click();
 	}
 
 	public String obterTituloTela() {
-		return obterTexto(By.cssSelector(".page-heading"));
+
+		return obterTexto(tituloPagina);
 	}
 
 	public String obterMensagemAlerta() {
-		return obterTexto(By.cssSelector(".alert > p"));
+
+		return obterTexto(mensagemAlerta);
 	}
 
 	public String obterDetalhesMensagemAlerta() {
-		return obterTexto(By.cssSelector(".alert > ol > li"));
+
+		return obterTexto(detalheMensagemAlerta);
 	}
 
 }

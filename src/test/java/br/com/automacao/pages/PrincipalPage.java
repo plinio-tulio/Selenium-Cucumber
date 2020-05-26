@@ -1,31 +1,32 @@
 package br.com.automacao.pages;
 
-import org.openqa.selenium.By;
+import br.com.automacao.maps.PrincipalElementMap;
 
-import br.com.automacao.core.BasePage;
-
-public class PrincipalPage extends BasePage {
-
-	final private String BaseURL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+public class PrincipalPage extends PrincipalElementMap {
 
 	public void acessarTelaPrincipal() {
+
 		acessar(BaseURL);
 	}
 
 	public void cliqueBotaoLogin() {
-		clique(By.cssSelector(".login"));
+
+		botaoLogin.click();
 	}
 
 	public void cliqueMenuSignout() {
-		clique(By.linkText("Sign out"));
+
+		clique(SignOut);
 	}
 
 	public void cliqueCadastrarUsuario() {
-		clique(By.id("SubmitCreate"));
+
+		botaoCadastrarUsuario.click();
 	}
 
 	public void prencherCampoEmailCadastro(String emailCriacao) {
-		escrever(By.id("email_create"), emailCriacao);
+
+		escrever(campoEmailCreate, emailCriacao);
 	}
 
 }

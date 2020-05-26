@@ -1,3 +1,8 @@
+#IntelliJ files
+.idea
+*.iml
+/target/test-classes/drivers/
+
 # Compiled class file
 *.class
 
@@ -18,3 +23,4 @@
 *.zip
 *.tar.gz
 *.rar
+
