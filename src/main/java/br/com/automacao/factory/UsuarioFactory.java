@@ -6,31 +6,34 @@ import br.com.automacao.utils.FakerUtils;
 public class UsuarioFactory {
 
 	public static Usuario obterNovoUsuario() {
-		Usuario usuario = new Usuario();
-		usuario.setSenha("123456");
-		usuario.setUsuario(FakerUtils.gerarEmailAleatorio());
-		usuario.setNome("Nome");
-		usuario.setSobreNome("Sobrenome");
-		usuario.setEmpresa("Empresa X");
-		usuario.setEndereco("Endereço Y");
-		usuario.setCidade("São Paulo");
-		usuario.setCodigoPostal("12345");
-		usuario.setTelefone("7999998888");
-		usuario.setEnderecoAlternativo("Endereco alternativo");
+		Usuario usuario = Usuario.builder()
+				.senha("123456")
+				.usuario(FakerUtils.gerarEmailAleatorio())
+				.nome("Nome")
+				.sobreNome("Sobrenome")
+				.empresa("Empresa X")
+				.endereco("Endereço Y")
+				.cidade("São Paulo")
+				.codigoPostal("12345")
+				.telefone("7999998888")
+				.enderecoAlternativo("Endereco alternativo")
+				.build();
 		return usuario;
 	}
 
 	public static Usuario obterUsuarioLoginValido() {
-		Usuario usuario = new Usuario();
-		usuario.setSenha("123456");
-		usuario.setUsuario("email2233@email.com");
+		Usuario usuario = Usuario.builder()
+				.senha("123456")
+				.usuario("email2233@email.com")
+				.build();
 		return usuario;
 	}
 
 	public static Usuario obterUsuarioLoginInvalido() {
-		Usuario usuario = new Usuario();
-		usuario.setSenha("789456");
-		usuario.setUsuario("email2233@email.com");
+		Usuario usuario = Usuario.builder()
+				.senha("789456")
+				.usuario("email2233@email.com")
+				.build();
 		return usuario;
 	}
 }

@@ -60,9 +60,10 @@ public class LoginSteps {
 	@Quando("^efetuo o login informando \"([^\"]*)\" e \"([^\"]*)\"$")
 	public void efetuo_login_informando_login_e_senha(String login, String senha) throws Throwable {
 
-		Usuario usuario = new Usuario();
-		usuario.setUsuario(login);
-		usuario.setSenha(senha);
+		Usuario usuario = Usuario.builder()
+				.senha(senha)
+				.usuario(login)
+				.build();
 		loginPage.preencherCamposDatela(usuario);
 		loginPage.cliqueBotaoLogin();
 	}
