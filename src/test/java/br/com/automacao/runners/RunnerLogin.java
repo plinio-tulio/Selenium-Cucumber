@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 		tags = {"@funcionais"},
 		plugin =  {"pretty", "html:target/reports/report-html", "json:target/reports/report-json/report.json"},
 		monochrome = true,
-		snippets = SnippetType.CAMELCASE,
+		snippets = SnippetType.UNDERSCORE,
 		dryRun = false,
 		strict = false
 		)
